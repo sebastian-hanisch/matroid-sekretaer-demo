@@ -1,7 +1,6 @@
 # Matroid-Sekretärproblem – Angebote nacheinander – Streamlit-Demo
 
-<!-- TODO nach dem Deploy: direkt hierher den Live-Link setzen (Leerzeile davor und danach):
-**[→ Demo live ausprobieren](https://sebastianhanisch-matroid-sekretaer-demo.streamlit.app/)** -->
+**[→ Demo live ausprobieren](https://sebastianhanisch-matroid-sekretaer-demo.streamlit.app/)**
 
 Dreizehntes Stück der Reihe **Matroide und Submodularität** (Bereich Kombinatorik; ein **gelbes** Stück, einzeln nach Stück 12 entschieden) in der „Konzepte“-Reihe für die Website „Sebastian Hanisch – Operations Research und Machine Learning“. Die Stücke davor haben alle Leitungsangebote **vorher** gesehen. Hier kommen sie **nacheinander** in zufälliger Reihenfolge, jedes ist **sofort anzunehmen oder zu verwerfen, endgültig**, und das Angenommene muss unabhängig bleiben (höchstens k Leitungen, höchstens eine je Farbe, keine geschlossenen Ringe). Die Frage: **Wie viel vom Offline-Optimum (Greedy, Stück 1 und 5) bleibt?** Drei Regeln auf **derselben Reihenfolge**: **erst kommt, erst bekommt**, **feste Stichprobe** und **wachsende Stichprobe**; bei Farben dazu die **klassische 1/e-Regel je Farbe**.
 
