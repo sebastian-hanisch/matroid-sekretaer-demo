@@ -46,7 +46,7 @@ PRESETS = {
 }
 PRESET_HELP = {
     "Standardfall (Voreinstellung)": "Großer Plan mit 12 Standorten (66 Leitungen), verdoppelnde Nutzen, keine geschlossenen Ringe, zufällige Reihenfolge. Die wachsende Stichprobe erreicht 0,56 des Offline-Optimums, erst kommt, erst bekommt nur 0,21.",
-    "Gutartige Gewichte": "Plan der Reihe (8 Standorte, 14 Leitungen), gleichverteilte Nutzen, keine Ringe: Hier gewinnt erst kommt, erst bekommt (0,84 gegen 0,55 der wachsenden Stichprobe). Das Beobachten zahlt sich erst bei schiefen Nutzen aus.",
+    "Gutartige Gewichte": "Plan der Reihe (8 Standorte, 14 Leitungen), gleichverteilte Nutzen, keine Ringe: Hier gewinnt erst kommt, erst bekommt (0,84 gegen 0,55 der wachsenden Stichprobe). Das Beobachten zahlt sich aus, wenn es deutlich mehr Angebote als Plätze gibt, bei ungleichen Nutzen noch mehr.",
     "Absteigende Reihenfolge": "Kardinalität 10, die wertvollsten Angebote kommen zuerst: Beide Stichprobenregeln nehmen nichts an (0,00), erst kommt, erst bekommt ist optimal (1,00). Die Zufallsreihenfolge ist die tragende Annahme.",
     "Farben": "66 Leitungen in 6 Kabelfarben, höchstens eine je Farbe, gleichverteilte Nutzen: Die klassische 1/e-Regel je Farbe erreicht 0,64, die wachsende Stichprobe 0,55, erst kommt, erst bekommt 0,51.",
     "Freie Wahl": "Plan der Reihe mit Kardinalität 14: Alle 14 Leitungen dürfen mit. Erst kommt, erst bekommt ist optimal (1,00), die Stichprobe kostet ihren Anteil (0,64).",

@@ -68,7 +68,7 @@ def test_order_rank_and_cost_verdicts():
     rows3 = [{"matroid": m, "okind": o, "erst": e, "fest": fe, "wachs": wa} for m in ("Kardinalität 10 (100 Angebote)", "Wald (12 Standorte)")
              for o, e, fe, wa in (("zufall", 0.55, 0.79, 0.85), ("aufsteigend", 0.06, 0.59, 0.43), ("absteigend", 1.0, 0.0, 0.0))]
     kind, text = ev.verdict_ex3(rows3)
-    assert kind == "info" and "**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln **nichts** an (**0,000**), erst kommt, erst bekommt ist dort optimal (**1,000**)." in text and "fällt erst kommt, erst bekommt auf **0,060** und **0,060**" in text
+    assert kind == "info" and "**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln in der Regel **nichts** an (Median **0,000**), erst kommt, erst bekommt ist dort optimal (**1,000**)." in text and "fällt erst kommt, erst bekommt auf **0,060** und **0,060**" in text
     assert ev.verdict_ex3(rows3[:2] + [dict(rows3[2], wachs=0.2)] + rows3[3:])[0] == "error"
     assert ev.ex3_table(rows3)[2]["Reihenfolge"] == "absteigend"
 

@@ -123,7 +123,7 @@ with st.sidebar:
     seed = st.number_input("Zufalls-Seed", *bounds("seed_input"), key="seed_input", step=1, help="Bestimmt Standorte, Leitungen und Nutzen.")
     st.button("🎲 Neue Instanz generieren", width="stretch", on_click=randomize_seed)
     wdist = st.selectbox("Nutzen der Leitungen", C.WEIGHTS, key="wdist_select", format_func=C.WEIGHT_NAMES.get,
-                         help="Wie ungleich die Angebote sind. Bei gleichen Nutzen gibt es nichts Schwereres, das aufspannt; je schiefer, desto mehr hilft das Beobachten.")
+                         help="Wie ungleich die Angebote sind. Bei gleichen Nutzen gibt es nichts Schwereres, das aufspannt; bei ungleichen Nutzen (exponentiell, Pareto, verdoppelnd) ist der Gewinn der Stichprobe größer als bei gleichverteilten.")
     st.markdown("**Nebenbedingung**")
     cons = st.selectbox("Was darf zusammen angenommen werden?", C.CONSTRAINTS, key="cons_select", format_func=C.CONSTRAINT_NAMES.get,
                         help="Kardinalität: höchstens k Leitungen. Farben: höchstens eine Leitung je Kabelfarbe (Partitionsmatroid). Wald: keine geschlossenen Ringe (graphisches Matroid).")
@@ -143,7 +143,7 @@ play_id = f"{inst}_{settings.v}_{settings.seed}_{wdist}_{cons}_{settings.k}_{oki
 
 st.markdown("## 🎯 Ein Lauf: drei Regeln, eine Reihenfolge")
 f = st.select_slider("Stichprobenanteil f", options=list(C.F_CHOICES), value=C.DEFAULT_F, key="f_slider",
-                     help="Welcher Anteil der Angebote nur angesehen wird. 0,37 ist ungefähr 1/e; bei höheren k ist ein kleineres f oft besser (Experiment 1).")
+                     help="Welcher Anteil der Angebote nur angesehen wird. 0,37 ist ungefähr 1/e; bei gleichverteilten Nutzen und höheren k ist ein kleineres f oft besser (Experiment 1).")
 rv = _run(settings, float(f))
 ins = rv["b"]["inst"]
 st.caption(f"{C.INSTANCE_NAMES[inst]}: {zahl(rv['m'])} Angebote, Rang {rv['rank']}. Zulässig: {C.CONSTRAINT_NAMES[cons]}" + (f", k = {settings.k}" if cons != "wald" else "") + f". Reihenfolge: {C.ORDER_NAMES[okind].split(' (')[0]}.")
@@ -272,11 +272,11 @@ st.markdown(
     """
 | Annahme | Was passiert, wenn sie verletzt ist (wer setzt an) |
 |---|---|
-| **Zufällige Reihenfolge** | Kommen die wertvollsten Angebote zuerst, nehmen beide Stichprobenregeln nichts an; kommen sie zuletzt, bleibt von „erst kommt, erst bekommt“ fast nichts. Das Sekretärmodell setzt die Zufallsreihenfolge voraus. **(Stück 13, Experiment 3)** |
+| **Zufällige Reihenfolge** | Kommen die wertvollsten Angebote zuerst, nehmen beide Stichprobenregeln in der Regel nichts an (beim Wald in einzelnen Instanzen doch etwas); kommen sie zuletzt, bleibt von „erst kommt, erst bekommt“ fast nichts. Das Sekretärmodell setzt die Zufallsreihenfolge voraus. **(Stück 13, Experiment 3)** |
 | **Alle Angebote sind unterscheidbar nach Nutzen** | Bei gleichen Nutzen gibt es nichts Schwereres, das aufspannt: Die Regeln nehmen an, was unabhängig bleibt. Die Demo setzt Gleichstände so (kein Satz). **(Stück 13)** |
 | **Das Matroid ist bekannt, die Nutzen kommender Angebote nicht** | Das ist das Sekretärmodell. Kennt man die Verteilungen der Nutzen (Prophet-Modell), sind andere Regeln möglich. **(nicht in dieser Reihe)** |
 | **Die Regeln sind Bezeichnungen dieser Demo** | „Feste“ und „wachsende Stichprobe“ sind hier benannt, keine zitierten Algorithmen; ob sie mit Verfahren der Literatur übereinstimmen, ist nicht geprüft. **(nicht geprüft)** |
-| **Nur Kardinalität, Farben und Wald gemessen** | Laminare und Transversal-Matroide fehlen; für sie und für allgemeine Matroide sind in der Literatur nur schwächere oder keine konstanten Faktoren bekannt. Die Vermutung „konstanter Faktor für alle Matroide“ ist offen; diese kleinen Fälle beweisen dazu nichts. **(Literatur, nicht gemessen)** |
+| **Nur Kardinalität, Farben und Wald gemessen** | Laminare und Transversal-Matroide fehlen (für sie sind in der Literatur konstante Faktoren bekannt); für allgemeine Matroide ist die Vermutung eines konstanten Faktors offen. Die Vermutung „konstanter Faktor für alle Matroide“ ist offen; diese kleinen Fälle beweisen dazu nichts. **(Literatur, nicht gemessen)** |
 | **Nutzen aus Verteilungen, nicht von einem Gegner** | Die Zahlen gelten für die gezogenen Instanzen und Seeds, nicht für den schlechtesten Fall. **(nicht allgemein)** |
 | **Streaming ist ein anderes Modell** | Dort darf die Reihenfolge beliebig sein, dafür ist der Speicher knapp (Stück 12). Hier ist die Reihenfolge zufällig und die Entscheidung sofort und endgültig, der Speicher egal. **(Stück 12)** |
 """

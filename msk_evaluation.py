@@ -220,7 +220,7 @@ def verdict_ex2(rows) -> tuple[str, str]:
     kc = by[("Kard", "konstant")]
     return "info", (f"Bei gleichverteilten Nutzen: Kardinalität erst **{anteil(kl['erst'])}**, wachsend **{anteil(kl['wachs'])}**; Wald erst **{anteil(wl['erst'])}**, wachsend **{anteil(wl['wachs'])}**. "
                     f"Bei verdoppelnden Nutzen: Kardinalität erst **{anteil(kg['erst'])}**, wachsend **{anteil(kg['wachs'])}**; Wald erst **{anteil(wg['erst'])}**, wachsend **{anteil(wg['wachs'])}**. "
-                    f"Sind alle Nutzen gleich, ist alles optimal (**{anteil(kc['erst'])}**): Dann gibt es nichts Schwereres, das aufspannt. Je schiefer die Nutzen, desto mehr zahlt sich das Beobachten aus.")
+                    f"Sind alle Nutzen gleich, ist alles optimal (**{anteil(kc['erst'])}**): Dann gibt es nichts Schwereres, das aufspannt. Bei ungleichen Nutzen (verdoppelnd) ist der Gewinn der Stichprobe größer als bei gleichverteilten.")
 
 
 # Experiment 3: Reihenfolge
@@ -247,7 +247,7 @@ def verdict_ex3(rows) -> tuple[str, str]:
     if kd["wachs"] > 1e-9 or wd["wachs"] > 1e-9:
         return "error", "Bei absteigender Reihenfolge darf eine Stichprobenregel nichts annehmen: Das ist ein Fehler in der Rechnung."
     return "info", (f"Bei zufälliger Reihenfolge: wachsende Stichprobe **{anteil(kz['wachs'])}** (Kardinalität) und **{anteil(wz['wachs'])}** (Wald). "
-                    f"**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln **nichts** an (**{anteil(kd['wachs'])}**), erst kommt, erst bekommt ist dort optimal (**{anteil(kd['erst'])}**). "
+                    f"**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln in der Regel **nichts** an (Median **{anteil(kd['wachs'])}**), erst kommt, erst bekommt ist dort optimal (**{anteil(kd['erst'])}**). "
                     f"**Aufsteigend** (wertvolle zuletzt) fällt erst kommt, erst bekommt auf **{anteil(ka['erst'])}** und **{anteil(wa['erst'])}**. Die Zufallsreihenfolge ist die tragende Annahme.")
 
 

@@ -81,7 +81,7 @@ def test_on_demand_series_appear_and_stay():
     at.button(key="ex2_run").click().run()
     assert not at.exception and any(t.startswith("Bei gleichverteilten Nutzen: Kardinalität erst") for t in _texts(at))
     at.button(key="ex3_run").click().run()
-    assert not at.exception and any("**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln **nichts** an" in t for t in _texts(at))
+    assert not at.exception and any("**Absteigend** (wertvolle zuerst) nehmen beide Stichprobenregeln in der Regel **nichts** an" in t for t in _texts(at))
     at.button(key="ex4_run").click().run()
     assert not at.exception and any(t.startswith("Bei verdoppelnden Nutzen und Rang 4 / 7 / 11 / 15") for t in _texts(at))
     at.button(key="ex5_run").click().run()
